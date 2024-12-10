@@ -1,0 +1,33 @@
+p {
+  font-family: papyrus;
+  font-size: 20px;
+  color: #000000;
+}
+h1 {
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #000000;
+}
+h2 {
+  font-family: papyrus;
+  font-size: 20px;
+  color: #000000;
+}
+h3 {
+  font-family: papyrus;
+  font-size: 20px;
+  color: #000000;
+}
+h4 {
+  font-family: papyrus;
+  font-size: 20px;
+  color: #000000;
+}
+div{
+  font-family: papyrus;
+  font-size: 20px;
+  color: #000000;
+}
+body {
+	background-color: #f8fafc;
+}
