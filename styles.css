@@ -31,3 +31,242 @@ div{
 body {
 	background-color: #f8fafc;
 }
+
+@font-face {
+    font-family: sixteenbit;
+    src: url(16bit.ttf)
+}
+
+#interactive_wrapper {
+    width: 920px
+}
+
+#interactive {
+    color: #fff;
+    border: 1px solid #e3e3e3;
+    float: left;
+    width: 918px;
+    background: url(/features/2014/11/gatsby_fix/graphics/sky.gif) no-repeat top center;
+    overflow: hidden
+}
+
+#interactive p {
+    line-height: normal
+}
+
+#canvas {
+    position: relative;
+    width: 918px;
+    float: left;
+    font-family: sixteenbit,verdana;
+    height: 355px;
+    overflow: hidden
+}
+
+.wave {
+    width: 45px;
+    height: 32px;
+    position: absolute;
+    left: 920px;
+    top: 240px;
+    background: url(/features/2014/11/gatsby_fix/graphics/wave.png)
+}
+
+#water {
+    position: absolute;
+    width: 920px;
+    top: 255px;
+    background: url(/features/2014/11/gatsby_fix/graphics/water_tile.gif);
+    height: 100px
+}
+
+.boat {
+    z-index: 2;
+    left: 30px;
+    position: absolute;
+    top: 250px;
+    width: 79px;
+    height: 32px;
+    background: url(/features/2014/11/gatsby_fix/graphics/gatsby.png)
+}
+
+#green_light {
+    position: absolute;
+    width: 97px;
+    height: 174px;
+    right: -10px;
+    top: 150px;
+    z-index: 3;
+    background: url(/features/2014/11/gatsby_fix/graphics/greenlight.png)
+}
+
+.game_message {
+    position: absolute;
+    font-size: 16px;
+    width: 920px;
+    text-align: center;
+    top: 130px;
+    display: none;
+    float: left
+}
+
+#title_card {
+    padding: 10px;
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    width: 880px;
+    height: 300px
+}
+
+#title_card p {
+    text-align: center
+}
+
+#game_title {
+    font-size: 40px;
+    margin: 0;
+    font-weight: 700
+}
+
+.instructions {
+    margin: 10px 0;
+    height: 30px;
+    font-size: 14px;
+    font-family: Arial
+}
+
+#authorTitle {
+    margin: 10px 0;
+    font-size: 12px
+}
+
+.btn_beginGameP {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 25px
+}
+
+.btn_beginGame {
+    padding: 10px;
+    background-color: rgba(255,255,255,.5);
+    color: #002991;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px gray
+}
+
+.btn_beginGame:hover {
+    background-color: rgba(255,255,255,.8)
+}
+
+#pauseCard {
+    width: 920px;
+    height: 355px;
+    line-height: 355px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 80px;
+    text-align: center;
+    z-index: 4;
+    background-color: rgba(0,0,0,.8);
+    cursor: pointer;
+    display: none
+}
+
+#pauseCard:hover {
+    background-color: red
+}
+
+#btn_pause {
+    opacity: .6;
+    display: none;
+    position: absolute;
+    bottom: 8px;
+    left: 35px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(/features/2014/11/gatsby_fix/graphics/btn_pause.png) no-repeat
+}
+
+#btn_pause:hover {
+    opacity: 1
+}
+
+#btn_sound {
+    opacity: .6;
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    width: 25px;
+    height: 20px;
+    background: url(/features/2014/11/gatsby_fix/graphics/soundsprite4.png);
+    cursor: pointer
+}
+
+#btn_sound:hover {
+    opacity: 1
+}
+
+#btn_sound.soundOff {
+    background-position: -30px 0
+}
+
+#game_over {
+    width: 920px;
+    height: 355px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0,.5);
+    display: none
+}
+
+#game_over_message {
+    width: 920px;
+    float: left;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    text-align: center
+}
+
+#btn_try_again {
+    float: left;
+    width: 920px;
+    text-align: center;
+    color: #f7ff00
+}
+
+#btn_try_again .btn_beginGame_behavior {
+    cursor: pointer
+}
+
+#btn_try_again .btn_beginGame_behavior:hover {
+    color: red
+}
+
+#attribution {
+    font-size: 9px;
+    text-align: right;
+    font-family: Verdana,sans-serif;
+    color: gray;
+    text-transform: uppercase
+}
+
+#arrows {
+    position: absolute;
+    top: 210px;
+    left: 30px;
+    display: none
+}
+
+.arrow {
+    opacity: .4
+}
+
+.arrow.on {
+    opacity: .8
+}
+
