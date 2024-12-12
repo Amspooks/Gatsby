@@ -31,7 +31,30 @@
 <!--[if gt IE 9]><!--><html class="no-js gt-ie9 modePublish"><!--<![endif]-->
   
 
+ <img id="water" src="arrow_right.png" alt="arrow right">
+  <img id="arrow_left" src="arrow_left.png" alt="arrow left">
+  <img id="greenlight" src="greenlight.png" alt="greenlight">
+  <img id="gatsby" src="gatsby.png" alt="gatsby">
+  <img id="sky" src="sky.gif" alt="sky">
+<img id="water" src="water_tile.gif" alt="water">
 
+  <p>Don't like the music? Click this button to change it!</p>
+  <audio id="sound1" src="Nightcore - DJVI - Base After Base.mp3" preload="auto"></audio>
+  <button id="funbutton" style="background-color: black;color:green;border-radius:5px;" onclick="document.getElementById('sound1').play();" title="Don't do it">
+    Change music
+  </button> 
+
+    <body>
+  <h1>Song Switcher</h1>
+  
+  <!-- Audio Player -->
+  <audio id="audioPlayer" controls>
+    <source id="audioSource" src="Nightcore - DJVI - Base After Base.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <!-- Button to Switch Songs -->
+  <button id="switchButton" style="background-color: black;color:green;border-radius:5px;" >Next Song</button>
 
 
 
@@ -863,11 +886,10 @@ requirejs([
                 <div id="title_card">
                     <p id="game_title">The Great Gatsby</p>
                     <p id="authorTitle"> by F. Scott Fitzgerald</p>
-                    <p class="instructions" style="papyrus" >Alternate the left and right arrow keys to row.</p>
+                    <p class="instructions" style="font-family: Papyrus" >Alternate the left and right arrow keys to row.</p>
                     <p class="btn_beginGameP"><span class="btn_beginGame btn_beginGame_behavior">Let's go, Old Sport!</span></p>
                 </div>
                 <div id="water"></div>
-                <div id="pauseCard">PAUSED</div>
                 <div id="btn_pause"></div>
                 <div id="btn_sound"></div>
                 <div id="game_over">
@@ -1279,32 +1301,6 @@ requirejs(["jquery", "myslate", "hcs/script", "hcs/plugins/SGNavDropdown.jquery"
     </span>
   </body>
 </html>
-
-    
-  <img src="arrow_right.png" alt="arrow right">
-  <img src="arrow_left.png" alt="arrow left">
-  <img src="greenlight.png" alt="greenlight">
-  <img src="gatsby.png" alt="gatsby">
-  <img src="sky.gif" alt="sky">
-   <img src="water_tile.gif" alt="water">
-
-  <p>Don't like the music? Click this button to change it!</p>
-  <audio id="sound1" src="Nightcore - DJVI - Base After Base.mp3" preload="auto"></audio>
-  <button id="funbutton" style="background-color: black;color:green;border-radius:5px;" onclick="document.getElementById('sound1').play();" title="Don't do it">
-    Change music
-  </button> 
-
-    <body>
-  <h1>Song Switcher</h1>
-  
-  <!-- Audio Player -->
-  <audio id="audioPlayer" controls>
-    <source id="audioSource" src="Nightcore - DJVI - Base After Base.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  
-  <!-- Button to Switch Songs -->
-  <button id="switchButton" style="background-color: black;color:green;border-radius:5px;" >Next Song</button>
 
   <script>
     // Array of song file paths
