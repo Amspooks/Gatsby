@@ -1,12 +1,95 @@
+<!DOCTYPE html>
 <html>
+<br>
+<h5>zoom in/out if you can't see it</h5>
 
-<canvas id="myYuckyYuckyCanvas" width="200" height="100" style="border:1px solid #000000;">
+<body onload="drawgame()">
+
+<canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
+    Your browser doesn't include support for the canvas element.
 </canvas>
 
+<!-- scripting time!!! yipe!! -->
+<script>
+    //set up the canvas
+    var c = document.getElementById("myYuckyYuckyCanvas");
+    var ctx = c.getContext("2d");
+    
+    //create images
+    var sky = new Image();
+    var gatsby1 = new Image();
+    var gatsby2 = new Image();
+    var greenLight = new Image();
+    var water = new Image();
+    var arrowLeft = new Image();
+    var arrowRight = new Image();
 
+    //define sources
+    sky.src = 'sky.gif';
+    gatsby1.src = 'gatsby1.png';
+    gatsby2.src = 'gatsby2.png';
+    greenLight.src = 'greenlight.png';
+    water.src = 'water_full.jpg';
+    arrowLeft.src = 'arrow_left.png';
+    arrowRight.src = 'arrow_right.png';
+    
+    //some preparation variables
+    var x = 69; // in pixels, from top left
+    var y = 264; // in pixels, from top left
+    var boatstatus = false; // n pressed = false, m pressed = true
+    var rowStrength = 10; // in pixels
+    var waveSpeed = 1; // in pixels/frame
+    var waveStrength = 15; // in pixels
 
+    //convert internal data to pixel coords (top left of imgs)
+    //function converts one coordinate at a time
+    function cpix(n, d) {
+        //n is x or y
+        //d is width or height of img
+        return n-(d/2);
+    }
+    //img size references
+    //wave: [NOT IMPLEMENTED]
+    //gatsby 1 & 2: width-79 height-32
 
+    function drawgame() {
+        ctx.drawImage(sky,0,0);
+        ctx.drawImage(water,0,253);
+        ctx.drawImage(gatsby1,cpix(x,79),cpix(y,32));
+        ctx.drawImage(greenLight,830,150);
+        //add title stuff and start button
+    }
 
+    function drawframe() {
+        ctx.drawImage(sky,0,0);
+        ctx.drawImage(water,0,253);
+        ctx.drawImage((boatstatus ? gatsby1 : gatsby2),cpix(x,79),cpix(y,32));
+        ctx.drawImage(greenLight,830,150);
+        //draw wave [NOT IMPLEMENTED]
+        
+    }
 
-  
+    document.addEventListener("keyup", function(event) {
+        //this is for detecting keypresses, the only ones we need are:
+        //n - 78, m - 77
+        if (event.keyCode == 78 & boatstatus){
+            boatstatus = false;
+        }
+        else if (event.keyCode == 77 & !boatstatus) {
+            boatstatus = true;
+            x += rowStrength;
+        }
+    });
+
+    //game loop
+    function gameloop() {
+        //do the game stuff here (mostly for waves)
+        //at the end of the frame, draw the updated stuff
+        drawframe();
+    }
+
+    //start the gameloop, run every 33 milliseconds (~60fps)
+    setInterval(gameloop, 33);
+</script>
+
 </html>
