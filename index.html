@@ -9,7 +9,7 @@
     Your browser doesn't include support for the canvas element.
 </canvas>
 <!--heheheheheh the original is "Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield"-->
-<p id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Leek and Gordon Cauliflower</p>
+<p id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Leek and Gordon Cauliflower and Avacado Campus</p>
 
 <!-- scripting time!!! yipe!! -->
 <script>
@@ -159,5 +159,29 @@
         clearInterval(simulation);
     }
 </script>
+<body>
 
+<audio id="myAudio">
+  <source src="Bases.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<p>Click the buttons to play or pause the audio.</p>
+
+<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button> 
+
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+  x.play(); 
+} 
+
+function pauseAudio() { 
+  x.pause(); 
+} 
+</script>
+
+</body>
 </html>
