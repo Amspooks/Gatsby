@@ -8,7 +8,8 @@
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
     Your browser doesn't include support for the canvas element.
 </canvas>
-<p id="attribution">Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield</p>
+<!--heheheheheh the original is "Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield"-->
+<p id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Leek and Gordon Cauliflower</p>
 
 <!-- scripting time!!! yipe!! -->
 <script>
@@ -22,6 +23,7 @@
     var gatsby2 = new Image();
     var greenLight = new Image();
     var water = new Image();
+    var wave = new Image();
     var arrowLeft = new Image();
     var arrowRight = new Image();
 
@@ -31,16 +33,25 @@
     gatsby2.src = 'gatsby2.png';
     greenLight.src = 'greenlight.png';
     water.src = 'water_full.jpg';
+    wave.src = 'wave.png';
     arrowLeft.src = 'arrow_left.png';
     arrowRight.src = 'arrow_right.png';
     
     //some preparation variables
-    var x = 69; // in pixels, from top left
-    var y = 264; // in pixels, from top left
+    var mspf = 10; // milliseconds per frame the game is run at
+    var x = 69; // in pixels, from top left. 69 is the starting value
+    var y = 264; // in pixels, from top left. this value never changes
     var boatstatus = false; // n pressed = false, m pressed = true
     var rowStrength = 10; // in pixels
-    var waveSpeed = 1; // in pixels/frame
+    var waveSpeed = 2; // in pixels/frame. relative to mspf so watch out
     var waveStrength = 15; // in pixels
+    var waveCd = 3000; // wave cooldown in MILLIseconds, min is whatever the game mspf is
+    var waveInterval = 4; // frames per wave upd, only affects visuals. can be set to non-int
+
+    // for internal usage only
+    var msSinceLastWave = 3000;
+    var framesSinceVisualUpd = 0;
+    var maxDist = 0;
 
     //convert internal data to pixel coords (top left of imgs)
     //function converts one coordinate at a time
@@ -50,7 +61,7 @@
         return n-(d/2);
     }
     //img size references
-    //wave: [NOT IMPLEMENTED]
+    //wave: width-45 height-32
     //gatsby 1 & 2: width-79 height-32
 
     function drawgame() {
@@ -64,10 +75,20 @@
     function drawframe() {
         ctx.drawImage(sky,0,0);
         ctx.drawImage(water,0,253);
+        if (framesSinceVisualUpd >= waveInterval) {
+            framesSinceVisualUpd -= waveInterval;
+            for (let i = 0; i < wavelist.length; i++){
+                //draw each wave in wavelist using the values stored in it
+                ctx.drawImage(wave,cpix(wavelist[i],45),(cpix(250,32) - (Math.random() >= 0.5 ? 2 : 0)));
+            }
+        } else {
+            for (let i = 0; i < wavelist.length; i++){
+                // in the og game the waves bob up and down (3px) so there's that i guess                    vvvvvv
+                ctx.drawImage(wave,cpix(wavelist[i]+(framesSinceVisualUpd*waveSpeed),45),(cpix(250,32) - (Math.random() >= 0.5 ? 2 : 0)));
+            }
+        }
         ctx.drawImage((boatstatus ? gatsby1 : gatsby2),cpix(x,79),cpix(y,32));
         ctx.drawImage(greenLight,830,150);
-        //draw wave [NOT IMPLEMENTED]
-        
     }
 
     document.addEventListener("keyup", function(event) {
@@ -82,15 +103,61 @@
         }
     });
 
+    const wavelist = []; //stores x values of waves
+    const wavestats = []; // stores whether the wave has pushed the boat or not
     //game loop
     function gameloop() {
-        //do the game stuff here (mostly for waves)
-        //at the end of the frame, draw the updated stuff
+        msSinceLastWave += mspf;
+        framesSinceVisualUpd++;
+        for (let i = 0; i < wavelist.length; i++){
+            //move each wave forward by wavespeed amt
+            wavelist[i] -= waveSpeed;
+            // this doesnt work with wavestats it just kinda deletes the list?
+            //oh well i hope not that much lag
+            //if (wavelist[i] <= -23){
+                // remove the wave, too far off screen
+            //    wavelist.splice(wavelist[1], 1);
+            //    wavestats.splice(wavestats[1], 1);
+            //}
+            if (wavelist[i] <= x & wavestats[i] == true){
+                x -= waveStrength;
+                wavestats[i] = false;
+            }
+        }
+        if (msSinceLastWave >= waveCd) {
+            msSinceLastWave -= waveCd;
+            wavelist.push(941);
+            wavestats.push(true);
+        }
+
+        if (x > maxDist) {
+            maxDist = x;
+        }
+
+        // found this silly equation for waveCd: -((1.008)^x)+3000-x
+        waveCd = Math.round(-((1.008)**maxDist)+3000-(maxDist**1.13));
+        console.log(waveCd);
+
+        if (maxDist > 800) {
+            //that one point where at the end the wavestrength increases
+            waveStrength = 45;
+            waveCd = 130;
+        }
+
+        if (x < -50) {
+            // the player died
+            endgame();
+        }
+
+        //at the end of the frame, draw the updated waves
         drawframe();
     }
 
-    //start the gameloop, run every 33 milliseconds (~60fps)
-    setInterval(gameloop, 33);
+    //start the gameloop, run every mspf milliseconds
+    simulation = setInterval(gameloop, mspf);
+    function endgame() {
+        clearInterval(simulation);
+    }
 </script>
 
 </html>
