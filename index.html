@@ -39,8 +39,8 @@
     
     //some preparation variables
     var mspf = 10; // milliseconds per frame the game is run at
-    var x = 69; // in pixels, from top left. 69 is the starting value
-    var y = 264; // in pixels, from top left. this value never changes
+    var gatsbyx = 69; // in pixels, from top left. 69 is the starting value
+    var gatsbyy = 264; // in pixels, from top left. this value never changes
     var boatstatus = false; // n pressed = false, m pressed = true
     var rowStrength = 10; // in pixels
     var waveSpeed = 2; // in pixels/frame. relative to mspf so watch out
@@ -67,7 +67,7 @@
     function drawgame() {
         ctx.drawImage(sky,0,0);
         ctx.drawImage(water,0,253);
-        ctx.drawImage(gatsby1,cpix(x,79),cpix(y,32));
+        ctx.drawImage(gatsby1,cpix(gatsbyx,79),cpix(gatsbyy,32));
         ctx.drawImage(greenLight,830,150);
         //add title stuff and start button
     }
@@ -87,7 +87,7 @@
                 ctx.drawImage(wave,cpix(wavelist[i]+(framesSinceVisualUpd*waveSpeed),45),(cpix(250,32) - (Math.random() >= 0.5 ? 2 : 0)));
             }
         }
-        ctx.drawImage((boatstatus ? gatsby1 : gatsby2),cpix(x,79),cpix(y,32));
+        ctx.drawImage((boatstatus ? gatsby1 : gatsby2),cpix(gatsbyx,79),cpix(gatsbyy,32));
         ctx.drawImage(greenLight,830,150);
     }
 
@@ -99,7 +99,7 @@
         }
         else if (event.keyCode == 77 & !boatstatus) {
             boatstatus = true;
-            x += rowStrength;
+            gatsbyx += rowStrength;
         }
     });
 
@@ -119,8 +119,8 @@
             //    wavelist.splice(wavelist[1], 1);
             //    wavestats.splice(wavestats[1], 1);
             //}
-            if (wavelist[i] <= x & wavestats[i] == true){
-                x -= waveStrength;
+            if (wavelist[i] <= gatsbyx & wavestats[i] == true){
+                gatsbyx -= waveStrength;
                 wavestats[i] = false;
             }
         }
@@ -130,13 +130,12 @@
             wavestats.push(true);
         }
 
-        if (x > maxDist) {
-            maxDist = x;
+        if (gatsbyx > maxDist) {
+            maxDist = gatsbyx;
         }
 
         // found this silly equation for waveCd: -((1.008)^x)+3000-x
         waveCd = Math.round(-((1.008)**maxDist)+3000-(maxDist**1.13));
-        console.log(x);
 
         if (maxDist > 800) {
             //that one point where at the end the wavestrength increases
@@ -144,7 +143,7 @@
             waveCd = 130;
         }
 
-        if (x < -50) {
+        if (gatsbyx < -50) {
             // the player died
             endgame();
         }
@@ -162,7 +161,7 @@
 <body>
 
 <audio id="myAudio">
-  <source src="Bases.mp3" type="audio/mpeg">
+  <source id="audioSource" src="Bases.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -170,17 +169,34 @@
 
 <button onclick="playAudio()" type="button">Play Audio</button>
 <button onclick="pauseAudio()" type="button">Pause Audio</button> 
+<button onclick="changeAudio()" type="button">Change Audio</button>
 
 <script>
-var x = document.getElementById("myAudio"); 
+var aud = document.getElementById("myAudio"); 
 
 function playAudio() { 
-  x.play(); 
+    aud.play(); 
+    console.log(audioSource.src);
 } 
 
 function pauseAudio() { 
-  x.pause(); 
+    aud.pause(); 
 } 
+
+srclist = ["Bases.mp3", "Eric.mp3", "Jeremy.mp3", "Kevin.mp3", "Kubbi.mp3"];
+song = 0;
+
+function changeAudio() {
+    if (song < 4) {
+        song++;
+    } else {
+        song = 0;
+    }
+    audioSource.src = srclist[song];
+    aud.load();
+    aud.play();
+    console.log(audioSource.src);
+}
 </script>
 
 </body>
