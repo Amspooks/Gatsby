@@ -10,7 +10,7 @@
 </canvas>
 <!--heheheheheh the original is "Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield"-->
 <p id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Leek and Gordon Cauliflower and Avacado Campus</p>
-    
+    <button id="retryButton" style="display: none;" onclick="retryGame()">Retry</button>
 <!-- scripting time!!! yipe!! -->
 <script>
     //set up the canvas
@@ -151,6 +151,18 @@
         //at the end of the frame, draw the updated waves
         drawframe();
     }
+    function endgame() {
+    // Code for handling the end of the game...
+    
+    // Show the retry button
+    document.getElementById("retryButton").style.display = "block";
+}
+
+function retryGame() {
+    // Code to restart or retry the game...
+    
+    // Hide the retry button again (if needed)
+    document.getElementById("retryButton").style.display = "none";
 
     //start the gameloop, run every mspf milliseconds
     simulation = setInterval(gameloop, mspf);
@@ -223,25 +235,8 @@ function changeAudio() {
     aud.play();
     console.log(audioSource.src);
 }
-    gameOver(message) {
-        const gameOverBox = document.getElementById("game-over");
+    
 
-        gameOverBox.style.display = "block";
-        gameOverBox.innerHTML = message;
-
-        beginGameButton.style.display = "block";
-        beginGameButton.textContent = "Restart";
-    }
-    beginGameButton.addEventListener('click', function() {
-    if ( beginGameButton.textContent.trim() === 'Start' ) {
-        game.startGame();
-
-        this.style.display = 'none';
-        document.getElementById('play-area').style.opacity = '1';
-    } else if ( beginGameButton.textContent.trim() === 'Restart' ) {
-        window.location.reload();
-    }
-});
 </script>
 
 </body>
