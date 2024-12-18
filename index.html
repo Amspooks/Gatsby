@@ -223,6 +223,25 @@ function changeAudio() {
     aud.play();
     console.log(audioSource.src);
 }
+    gameOver(message) {
+        const gameOverBox = document.getElementById("game-over");
+
+        gameOverBox.style.display = "block";
+        gameOverBox.innerHTML = message;
+
+        beginGameButton.style.display = "block";
+        beginGameButton.textContent = "Restart";
+    }
+    beginGameButton.addEventListener('click', function() {
+    if ( beginGameButton.textContent.trim() === 'Start' ) {
+        game.startGame();
+
+        this.style.display = 'none';
+        document.getElementById('play-area').style.opacity = '1';
+    } else if ( beginGameButton.textContent.trim() === 'Restart' ) {
+        window.location.reload();
+    }
+});
 </script>
 
 </body>
