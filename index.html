@@ -151,24 +151,7 @@
         //at the end of the frame, draw the updated waves
         drawframe();
     }
-    function endgame() {
-    // Code for handling the end of the game...
-    
-    // Show the retry button
-    document.getElementById("retryButton").style.display = "block";
-}
 
-function retryGame() {
-    // Code to restart or retry the game...
-    
-    // Hide the retry button again (if needed)
-    document.getElementById("retryButton").style.display = "none";
-
-    //start the gameloop, run every mspf milliseconds
-    simulation = setInterval(gameloop, mspf);
-    function endgame() {
-        clearInterval(simulation);
-    }
 </script>
 <body>
 <style>
@@ -235,7 +218,44 @@ function changeAudio() {
     aud.play();
     console.log(audioSource.src);
 }
-    
+    function checkGameStatus() {
+    if (gatsbyx < -50) {
+        // Player dies, end the game
+        endgame();
+    }
+}
+
+// Endgame function to show the retry button
+function endgame() {
+    // Logic for when the game ends, e.g. stop movement, display score, etc.
+    console.log("Game Over!");
+
+    // Show the retry button
+    document.getElementById("retryButton").style.display = "block";
+}
+
+// Retry game function to reset the game state
+function retryGame() {
+    // Reset any game variables, e.g., player position, score, etc.
+    gatsbyx = 0;
+    console.log("Game Restarted");
+
+    // Hide the retry button after clicking it
+    document.getElementById("retryButton").style.display = "none";
+
+    // Optionally, restart game logic here (for example, reset the game state)
+    startGame();
+}
+
+// Optionally, you can call startGame() to initialize the game again
+function startGame() {
+    // Game start logic (e.g., reset everything)
+    console.log("Game Started!");
+    // Start or resume game here
+}
+
+// Call this function to check the game status periodically
+setInterval(checkGameStatus, 100); // Check every 100ms for demo purposes
 
 </script>
 
