@@ -136,18 +136,13 @@
         // found this silly equation for waveCd: -((1.008)^x)+3000-x
         waveCd = Math.round(-((1.008)**maxDist)+3000-(maxDist**1.13));
 
-let loopCount = 0;
-
-if (maxDist > 800 && waveStrength > 0 && loopCount < 1) {
-    // When this condition is met and the loop count is less than 1
+if (maxDist > 800 && waveStrength > 0) {
     waveStrength = 60;
-    waveCd = 40;
-    loopCount++; // Increment the loop counter
+    waveCd = 45;
 }
 
-if (gatsbyx < 0 && loopCount < 1) {
+if (gatsbyx < 0) {
     waveStrength = -10;
-    loopCount++; // Increment the loop counter
 }
 
     if (gatsbyx > 918) {
