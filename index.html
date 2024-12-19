@@ -156,7 +156,9 @@ ctx.fillText("Gatsby Don't Care About No Waves",10,80);
     }
 
     //start the gameloop, run every mspf milliseconds
+    function startgame() {
     simulation = setInterval(gameloop, mspf);
+}
     function endgame() {
         clearInterval(simulation);
     }
