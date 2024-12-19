@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <br>
-<button onclick="startgame()" type="button">Start game</button>
+<button class="button" onclick="startgame()" type="button">Start game</button>
+    
 <hr>
 <body onload="drawgame()">
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
@@ -10,7 +11,7 @@
 </canvas>
     <hr>
 <!--heheheheheh the original is "Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield"-->
-<p id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Lee, Gordon Caulfield, My Buddy</p>
+<p id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Lee, Gordon Caulfield, and My Buddy</p>
 <!-- scripting time!!! yipe!! -->
 <script>
     //set up the canvas
@@ -180,7 +181,7 @@ ctx.fillText("Gatsby Don't Care About No Waves",10,80);
   box-shadow: 0 9px #999;
 }
     hr {
-  width: 66%;
+  width: 60%;
 margin-left:0;
 }
 
@@ -202,9 +203,9 @@ margin-left:0;
 
 <p>Click the buttons to play or pause the audio.</p>
 
-<button onclick="playAudio()" type="button">Play Audio</button>
-<button onclick="pauseAudio()" type="button">Pause Audio</button> 
-<button onclick="changeAudio()" type="button">Change Audio</button>
+<button class="button" onclick="playAudio()" type="button">Play Audio</button>
+<button class="button" onclick="pauseAudio()" type="button">Pause Audio</button> 
+<button class="button" onclick="changeAudio()" type="button">Change Audio</button>
 
 <script>
 var aud = document.getElementById("myAudio"); 
