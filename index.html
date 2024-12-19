@@ -136,16 +136,15 @@
         // found this silly equation for waveCd: -((1.008)^x)+3000-x
         waveCd = Math.round(-((1.008)**maxDist)+3000-(maxDist**1.13));
 
-        if (maxDist > 800) {
+        if (maxDist > 800 & waveCD < 0) {
             //that one point where at the end the wavestrength increases
-            waveStrength = 0;
-            waveCd = 999999999;
+            waveStrength = 45;
+            waveCd = 130;
+            
         }
 
-        if (gatsbyx < -50) {
-            // the player died
-            endgame();
-        }
+    if (gatsbyx < 0) {
+  waveStrength = -45;
 
         //at the end of the frame, draw the updated waves
         drawframe();
