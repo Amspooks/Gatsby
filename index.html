@@ -2,6 +2,7 @@
 <html>
 <br>
 <button class="button" onclick="startgame()" type="button">Start game</button>
+    <button class="restart-btn">Restart Game</button>
     <title>Communist Gatsby</title>
     
 <hr>
@@ -165,6 +166,10 @@ ctx.fillText("Gatsby Don't Care About No Waves",10,80);
     function endgame() {
         clearInterval(simulation);
     }
+    document.querySelector('.restart-btn').addEventListener('click', function(){
+  window.location.reload();
+  return false;
+});
 </script>
 <body>
 <style>
