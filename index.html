@@ -287,8 +287,19 @@ function changeAudio() {
     aud.play();
     console.log(audioSource.src);
 }
-    
+      <h4>Speedrun timer:</h4>
+  <h3 id="timerytimer">0</h3>
 </script>
+      <script id = timer>
+    let number = 0;
+    const numberElement = document.getElementById("timerytimer");
+
+    setInterval(() => {
+      number++;
+      numberElement.textContent = number;
+    }, 1000); 
+    
+  </script>
 
 </body>
 </html>
