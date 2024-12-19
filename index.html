@@ -7,7 +7,7 @@
     
     
 <hr>
-    <p style="font-size:10vw" id="paragraph"></p>
+    <p style="font-size:3vw" id="paragraph">You can do it!</p>
 <body style="background-color: #d9d9ff;" onload="drawgame()">
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
     
@@ -151,10 +151,10 @@ if (gatsbyx < 0) {
     waveStrength = -5;
     waveCd = 50;
 }
-  if (gatsbyx > 500) {
+  if (waveStrength < 0) {
   midgame();
 }
-          if (gatsbyx > 800) {
+          if (waveStrength > 59) {
   diegame();
 }
     if (gatsbyx > 918) {
