@@ -3,6 +3,9 @@
 <br>
 <button title="Click to begin" class="button" onclick="startgame()" type="button">Start game</button>
     <button title="Click to restart" class="restart-btn">Restart Game</button>
+    <a href="gatsber.html">
+     <button title="Secret" class="button" id="secret" type="button" hidden></button>
+    </a>
     <title>Communist Gatsby</title>
     
     
@@ -178,6 +181,9 @@ if (gatsbyx < 0) {
           ctx.font = "50px Arial";
 ctx.fillText("Gatsby Don't Care About No Waves",10,80);
         document.getElementById('paragraph').innerText = "Congratulations! Gatsby isn't as washed up as they say!"
+        document.getElementById('secret').innerText = "Secret?"
+            const secretButton = document.getElementById('secret');
+    secretButton.removeAttribute('hidden');
     }
      function midgame() {
         document.getElementById('paragraph').innerText = "Wait Gatsby No"
@@ -255,7 +261,9 @@ margin-left:0;
   Your browser does not support the audio element.
 </audio>
 <h1>PRESS THE "N" AND "M" KEYS TO MOVE GATSBY!!!</h1>
-<p>Click the buttons to play or pause the audio.</p>
+<p>Click the</p>
+   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">buttons</a> 
+    <p>to play or pause the audio.</p>
 
 <button title="Begin the audio" class="button" onclick="playAudio()" type="button">Play Audio</button>
 <button title="Stop the audio" class="button" onclick="pauseAudio()" type="button">Pause Audio</button> 
