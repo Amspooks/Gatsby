@@ -146,7 +146,9 @@ if (maxDist > 800 && waveStrength > 0) {
     waveStrength = 60;
     waveCd = 50;
 }
-
+if (gatsbyx > 700 && waveStrength < 0) {
+     sadgame();
+}
 if (gatsbyx < 0) {
     waveStrength = -5;
     waveCd = 50;
@@ -179,6 +181,9 @@ ctx.fillText("Gatsby Don't Care About No Waves",10,80);
     }
     function diegame() {
         document.getElementById('paragraph').innerText = "HAHA SUFFER"
+    }
+      function sadgame() {
+        document.getElementById('paragraph').innerText = "This Isn't How You're Supposed To Play"
     }
    
     document.querySelector('.restart-btn').addEventListener('click', function(){
