@@ -147,14 +147,18 @@ if (maxDist > 800 && waveStrength > 0) {
     waveCd = 50;
 }
 if (gatsbyx > 600 && waveStrength < 0) {
-    sadgame();
+   waveStrength = -7;
+    waveCd = 50;
 }
 if (gatsbyx < 0) {
     waveStrength = -5;
     waveCd = 50;
 }
-  if (waveStrength < 0) {
+  if (waveStrength < -4) {
   midgame();
+}
+          if (waveStrength < -6) {
+  sadgame();
 }
           if (waveStrength > 59) {
   diegame();
