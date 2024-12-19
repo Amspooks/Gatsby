@@ -176,17 +176,21 @@ if (gatsbyx < 0) {
     function startgame() {
     simulation = setInterval(gameloop, mspf);
 }
-    function endgame() {
-        clearInterval(simulation);
-          ctx.font = "50px Arial";
-ctx.fillText("Gatsby Don't Care About No Waves",10,80);
-        document.getElementById('paragraph').innerText = "Congratulations! Gatsby isn't as washed up as they say!"
-        document.getElementById('secret').innerText = "Secret?"
-            const secretButton = document.getElementById('secret');
-    secretButton.removeAttribute('hidden');
-        const secretButton = document.getElementById('secret');
-    secretButton.style.display = "inline-block"; // Make the button visible
-}
+function endgame() {
+    clearInterval(simulation);
+    
+    // Display message on canvas
+    ctx.font = "50px Arial";
+    ctx.fillText("Gatsby Don't Care About No Waves", 10, 80);
+
+    // Update paragraph text
+    document.getElementById('paragraph').innerText = "Congratulations! Gatsby isn't as washed up as they say!";
+
+    // Get the button and update it
+    const secretButton = document.getElementById('secret'); // Declare only once
+    secretButton.innerText = "Secret?";
+    secretButton.removeAttribute('hidden'); // Remove 'hidden' attribute
+    secretButton.style.display = "inline-block"; // Ensure visibility
     }
      function midgame() {
         document.getElementById('paragraph').innerText = "Wait Gatsby No"
