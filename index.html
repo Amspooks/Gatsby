@@ -4,10 +4,10 @@
 <button class="button" onclick="startgame()" type="button">Start game</button>
     <button class="restart-btn">Restart Game</button>
     <title>Communist Gatsby</title>
-    <p id="paragraph"></p>
+    
     
 <hr>
-    
+    <p style="id="paragraph"></p>
 <body style="background-color: #d9d9ff;" onload="drawgame()">
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
     
@@ -151,7 +151,12 @@ if (gatsbyx < 0) {
     waveStrength = -5;
     waveCd = 50;
 }
-
+  if (gatsbyx > 500) {
+  midgame();
+}
+          if (gatsbyx > 800) {
+  diegame();
+}
     if (gatsbyx > 918) {
   endgame();
 }
@@ -167,7 +172,13 @@ if (gatsbyx < 0) {
         clearInterval(simulation);
           ctx.font = "50px Arial";
 ctx.fillText("Gatsby Don't Care About No Waves",10,80);
-        document.getElementById('paragraph').innerText = 'Wowzers Gatsby Alive!'
+        document.getElementById('paragraph').innerText = "Congratulations! Gatsby isn't as washed up as they say!"
+    }
+     function midgame() {
+        document.getElementById('paragraph').innerText = "He's doing it!"
+    }
+    function diegame() {
+        document.getElementById('paragraph').innerText = "HAHA SUFFER"
     }
    
     document.querySelector('.restart-btn').addEventListener('click', function(){
