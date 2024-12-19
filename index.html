@@ -143,9 +143,10 @@
             
         }
 
-    if (gatsbyx < 0) {
-  waveStrength = -45;
-
+    if (gatsbyx > 918) {
+  endgame();
+  //search up how to write text in html canvas, it can be done but i dont know how
+}
         //at the end of the frame, draw the updated waves
         drawframe();
     }
