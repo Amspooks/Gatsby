@@ -6,6 +6,7 @@
 <body onload="drawgame()">
 
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
+    
     Your browser doesn't include support for the canvas element.
 </canvas>
 <!--heheheheheh the original is "Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield"-->
@@ -15,6 +16,8 @@
     //set up the canvas
     var c = document.getElementById("myYuckyYuckyCanvas");
     var ctx = c.getContext("2d");
+    const canvas = document.getElementById("myYuckyYuckyCanvas");
+const ctx = canvas.getContext("2d");
     
     //create images
     var sky = new Image();
