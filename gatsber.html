@@ -11,7 +11,7 @@
     
     
 <hr>
-    <p style="font-size:3vw" id="paragraph">You can do it!</p>
+    <p style="font-size:3vw" id="paragraph">Something is off...</p>
 <body style="background-color: #d9d9ff;" onload="drawgame()">
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
     
@@ -146,8 +146,8 @@
         // found this silly equation for waveCd: -((1.008)^x)+3000-x
         waveCd = Math.round(-((1.008)**maxDist)+3000-(maxDist**1.13));
 
-if (maxDist > 800 && waveStrength > 0) {
-    waveStrength = 60;
+if (maxDist > 800) {
+    waveStrength = 40;
     waveCd = 50;
 }
 if (gatsbyx > 600 && waveStrength < 0) {
@@ -181,19 +181,16 @@ if (gatsbyx < 0) {
         clearInterval(simulation);
           ctx.font = "50px Arial";
 ctx.fillText("Gatsby Don't Care About No Waves",10,80);
-        document.getElementById('paragraph').innerText = "Congratulations! Gatsby isn't as washed up as they say!"
-        document.getElementById('secret').innerText = "Secret?"
-            const secretButton = document.getElementById('secret');
-    secretButton.removeAttribute('hidden');
+        document.getElementById('paragraph').innerText = "What Just Happened"
     }
      function midgame() {
-        document.getElementById('paragraph').innerText = "Wait Gatsby No"
+        document.getElementById('paragraph').innerText = "Nothing Weird..."
     }
     function diegame() {
-        document.getElementById('paragraph').innerText = "HAHA SUFFER"
+        document.getElementById('paragraph').innerText = "Ok Seems Normal So Far"
     }
       function sadgame() {
-        document.getElementById('paragraph').innerText = "This Isn't How You're Supposed To Play"
+        document.getElementById('paragraph').innerText = "Oh There It Is."
     }
    
     document.querySelector('.restart-btn').addEventListener('click', function(){
