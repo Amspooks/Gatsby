@@ -4,9 +4,11 @@
 <button class="button" onclick="startgame()" type="button">Start game</button>
     <button class="restart-btn">Restart Game</button>
     <title>Communist Gatsby</title>
+    <p id="paragraph"></p>
     
 <hr>
-<body style=“background-color: #d9d9ff” onload="drawgame()">
+    
+<body style="background-color: #d9d9ff;" onload="drawgame()">
 <canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
     
     Your browser doesn't include support for the canvas element.
@@ -151,8 +153,6 @@ if (gatsbyx < 0) {
 }
 
     if (gatsbyx > 918) {
-        ctx.font = "50px Arial";
-ctx.fillText("Gatsby Don't Care About No Waves",10,80);
   endgame();
 }
         //at the end of the frame, draw the updated waves
@@ -165,7 +165,11 @@ ctx.fillText("Gatsby Don't Care About No Waves",10,80);
 }
     function endgame() {
         clearInterval(simulation);
+          ctx.font = "50px Arial";
+ctx.fillText("Gatsby Don't Care About No Waves",10,80);
+        document.getElementById('paragraph').innerText = 'Wowzers Gatsby Alive!'
     }
+   
     document.querySelector('.restart-btn').addEventListener('click', function(){
   window.location.reload();
   return false;  
