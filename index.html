@@ -184,6 +184,9 @@ ctx.fillText("Gatsby Don't Care About No Waves",10,80);
         document.getElementById('secret').innerText = "Secret?"
             const secretButton = document.getElementById('secret');
     secretButton.removeAttribute('hidden');
+        const secretButton = document.getElementById('secret');
+    secretButton.style.display = "inline-block"; // Make the button visible
+}
     }
      function midgame() {
         document.getElementById('paragraph').innerText = "Wait Gatsby No"
@@ -255,6 +258,9 @@ margin-left:0;
      .restart-btn:hover {
   box-shadow: 0 7px 12px 0 rgba(0,0,0,0.24),0 12px 45px 0 rgba(0,0,0,0.19);
 }
+     #secret {
+        display: none;
+    }
 </style>
 <audio id="myAudio">
   <source id="audioSource" src="Bases.mp3" type="audio/mpeg">
