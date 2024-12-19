@@ -1,1 +1,303 @@
 
+<!DOCTYPE html>
+<html>
+<br>
+<button title="Click to begin" class="button" onclick="startgame()" type="button">Start game</button>
+    <button title="Click to restart" class="restart-btn">Restart Game</button>
+    <a href="index.html">
+     <button title="What?" class="button" type="button" >Go back</button>
+    </a>
+    <title>Huh?</title>
+    
+    
+<hr>
+    <p style="font-size:3vw" id="paragraph">You can do it!</p>
+<body style="background-color: #d9d9ff;" onload="drawgame()">
+<canvas id="myYuckyYuckyCanvas" width="918" height="355" style="border:1px solid #000000;">
+    
+    Your browser doesn't include support for the canvas element.
+</canvas>
+    <hr>
+<!--heheheheheh the original is "Art by Andrew Morgan | Interactive by Chris Kirk | Remade by Siwon Lee and Gordon Caulfield"-->
+<sub id="attribution">Art by Andrew Mango | Interactive by Chris Kale | Remade by Siwon Lee, Gordon Caulfield, and My Buddy</sub>
+<!-- scripting time!!! yipe!! -->
+<script>
+    //set up the canvas
+    var c = document.getElementById("myYuckyYuckyCanvas");
+    var ctx = c.getContext("2d");
+    
+    //create images
+    var sky = new Image();
+    var gatsby1 = new Image();
+    var gatsby2 = new Image();
+    var greenLight = new Image();
+    var water = new Image();
+    var wave = new Image();
+    var arrowLeft = new Image();
+    var arrowRight = new Image();
+
+    //define sources
+    sky.src = 'sky.gif';
+    gatsby1.src = 'gatsby1.png';
+    gatsby2.src = 'gatsby2.png';
+    greenLight.src = 'greenlight.png';
+    water.src = 'water_full.jpg';
+    wave.src = 'wave.png';
+    arrowLeft.src = 'arrow_left.png';
+    arrowRight.src = 'arrow_right.png';
+    
+    //some preparation variables
+    var mspf = 10; // milliseconds per frame the game is run at
+    var gatsbyx = 69; // in pixels, from top left. 69 is the starting value
+    var gatsbyy = 264; // in pixels, from top left. this value never changes
+    var boatstatus = false; // n pressed = false, m pressed = true
+    var rowStrength = 10; // in pixels
+    var waveSpeed = 2; // in pixels/frame. relative to mspf so watch out
+    var waveStrength = 15; // in pixels
+    var waveCd = 3000; // wave cooldown in MILLIseconds, min is whatever the game mspf is
+    var waveInterval = 4; // frames per wave upd, only affects visuals. can be set to non-int
+
+    // for internal usage only
+    var msSinceLastWave = 3000;
+    var framesSinceVisualUpd = 0;
+    var maxDist = 0;
+
+    //convert internal data to pixel coords (top left of imgs)
+    //function converts one coordinate at a time
+    function cpix(n, d) {
+        //n is x or y
+        //d is width or height of img
+        return n-(d/2);
+    }
+    //img size references
+    //wave: width-45 height-32
+    //gatsby 1 & 2: width-79 height-32
+
+    function drawgame() {
+        ctx.drawImage(sky,0,0);
+        ctx.drawImage(water,0,253);
+        ctx.drawImage(gatsby1,cpix(gatsbyx,79),cpix(gatsbyy,32));
+        ctx.drawImage(greenLight,830,150);
+        //add title stuff and start button
+    }
+
+    function drawframe() {
+        ctx.drawImage(sky,0,0);
+        ctx.drawImage(water,0,253);
+        if (framesSinceVisualUpd >= waveInterval) {
+            framesSinceVisualUpd -= waveInterval;
+            for (let i = 0; i < wavelist.length; i++){
+                //draw each wave in wavelist using the values stored in it
+                ctx.drawImage(wave,cpix(wavelist[i],45),(cpix(250,32) - (Math.random() >= 0.5 ? 2 : 0)));
+            }
+        } else {
+            for (let i = 0; i < wavelist.length; i++){
+                // in the og game the waves bob up and down (3px) so there's that i guess                    vvvvvv
+                ctx.drawImage(wave,cpix(wavelist[i]+(framesSinceVisualUpd*waveSpeed),45),(cpix(250,32) - (Math.random() >= 0.5 ? 2 : 0)));
+            }
+        }
+        ctx.drawImage((boatstatus ? gatsby1 : gatsby2),cpix(gatsbyx,79),cpix(gatsbyy,32));
+        ctx.drawImage(greenLight,830,150);
+    }
+
+    document.addEventListener("keyup", function(event) {
+        //this is for detecting keypresses, the only ones we need are:
+        //n - 78, m - 77
+        if (event.keyCode == 78 & boatstatus){
+            boatstatus = false;
+        }
+        else if (event.keyCode == 77 & !boatstatus) {
+            boatstatus = true;
+            gatsbyx += rowStrength;
+        }
+    });
+
+    const wavelist = []; //stores x values of waves
+    const wavestats = []; // stores whether the wave has pushed the boat or not
+    //game loop
+    function gameloop() {
+        msSinceLastWave += mspf;
+        framesSinceVisualUpd++;
+        for (let i = 0; i < wavelist.length; i++){
+            //move each wave forward by wavespeed amt
+            wavelist[i] -= waveSpeed;
+            // this doesnt work with wavestats it just kinda deletes the list?
+            //oh well i hope not that much lag
+            //if (wavelist[i] <= -23){
+                // remove the wave, too far off screen
+            //    wavelist.splice(wavelist[1], 1);
+            //    wavestats.splice(wavestats[1], 1);
+            //}
+            if (wavelist[i] <= gatsbyx & wavestats[i] == true){
+                gatsbyx -= waveStrength;
+                wavestats[i] = false;
+            }
+        }
+        if (msSinceLastWave >= waveCd) {
+            msSinceLastWave -= waveCd;
+            wavelist.push(941);
+            wavestats.push(true);
+        }
+
+        if (gatsbyx > maxDist) {
+            maxDist = gatsbyx;
+        }
+
+        // found this silly equation for waveCd: -((1.008)^x)+3000-x
+        waveCd = Math.round(-((1.008)**maxDist)+3000-(maxDist**1.13));
+
+if (maxDist > 800 && waveStrength > 0) {
+    waveStrength = 60;
+    waveCd = 50;
+}
+if (gatsbyx > 600 && waveStrength < 0) {
+   waveStrength = -7;
+}
+if (gatsbyx < 0) {
+    waveStrength = -5;
+    waveCd = 50;
+}
+  if (waveStrength < -4) {
+  midgame();
+}
+          if (waveStrength < -6) {
+  sadgame();
+}
+          if (waveStrength > 59) {
+  diegame();
+}
+    if (gatsbyx > 918) {
+  endgame();
+}
+        //at the end of the frame, draw the updated waves
+        drawframe();
+    }
+
+    //start the gameloop, run every mspf milliseconds
+    function startgame() {
+    simulation = setInterval(gameloop, mspf);
+}
+    function endgame() {
+        clearInterval(simulation);
+          ctx.font = "50px Arial";
+ctx.fillText("Gatsby Don't Care About No Waves",10,80);
+        document.getElementById('paragraph').innerText = "Congratulations! Gatsby isn't as washed up as they say!"
+        document.getElementById('secret').innerText = "Secret?"
+            const secretButton = document.getElementById('secret');
+    secretButton.removeAttribute('hidden');
+    }
+     function midgame() {
+        document.getElementById('paragraph').innerText = "Wait Gatsby No"
+    }
+    function diegame() {
+        document.getElementById('paragraph').innerText = "HAHA SUFFER"
+    }
+      function sadgame() {
+        document.getElementById('paragraph').innerText = "This Isn't How You're Supposed To Play"
+    }
+   
+    document.querySelector('.restart-btn').addEventListener('click', function(){
+  window.location.reload();
+  return false;  
+});
+</script>
+<body>
+<style>
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3333BB;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #999;
+}
+    .restart-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3333BB;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #999;
+}
+    hr {
+  width: 918;
+margin-left:0;
+}
+
+.button:hover {background-color: #9c9cf7}
+    .restart-btn:hover {background-color: #ff3d3d}
+
+
+.button:active {
+  background-color: #9c9cf7;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+    .restart-btn:active {
+  background-color: #ff3d3d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+    .button:hover {
+  box-shadow: 0 7px 12px 0 rgba(0,0,0,0.24),0 12px 45px 0 rgba(0,0,0,0.19);
+}
+     .restart-btn:hover {
+  box-shadow: 0 7px 12px 0 rgba(0,0,0,0.24),0 12px 45px 0 rgba(0,0,0,0.19);
+}
+</style>
+<audio id="myAudio">
+  <source id="audioSource" src="Bases.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<h1>PRESS THE "N" AND "M" KEYS TO MOVE GATSBY!!!</h1>
+<p>Click the</p>
+   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">buttons</a> 
+    <p>to play or pause the audio.</p>
+
+<button title="Begin the audio" class="button" onclick="playAudio()" type="button">Play Audio</button>
+<button title="Stop the audio" class="button" onclick="pauseAudio()" type="button">Pause Audio</button> 
+<button title="Change the audio" class="button" onclick="changeAudio()" type="button">Change Audio</button>
+
+<script>
+var aud = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    aud.play(); 
+    console.log(audioSource.src);
+} 
+
+function pauseAudio() { 
+    aud.pause(); 
+} 
+
+srclist = ["Bases.mp3", "Eric.mp3", "Jeremy.mp3", "Kevin.mp3", "Kubbi.mp3"];
+song = 0;
+
+function changeAudio() {
+    if (song < 4) {
+        song++;
+    } else {
+        song = 0;
+    }
+    audioSource.src = srclist[song];
+    aud.load();
+    aud.play();
+    console.log(audioSource.src);
+}
+    
+  </script>
+
+</body>
+</html>
