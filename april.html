@@ -59,18 +59,154 @@
     const specialButton = document.getElementById("specialButton");
     const bonusButton = document.getElementById("bonusButton");
     let clickCount = 0;
-
+    
     const messages = [
-      "Don't click me",
-      "Stop it",
-      "Please",
-      "It hurts",
-      "No more",
       "Ow",
-      "You are one without love and mercy",
-      "I hope you suffer with me in hell",
-      "Make it stop",
-      "One more time."
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "Ow",
+      "I don't understand why you click me. Is there some sort of sick satisfaction you get chasing me around the screen? Do you find pleasure in hurting me over and over again to no end? You are a vile monster who deserves damnation. I hope you rot with me in the afterlife.",
+      "Ow"
     ];
 
     // Timer logic
@@ -109,9 +245,19 @@
       }
     });
 
+      // Make the number clickable at 15 seconds
+      if (number === 15) {
+        numberElement.classList.add("link");
+        numberElement.title = "?";
+        numberElement.addEventListener("click", () => {
+          window.location.href = "https://www.youtube.com/watch?v=bKICsi3eBzM&ab_channel=Amspooks"; // Replace with your desired website
+        });
+      }
+    }, 1000); 
+
     // Bonus button click logic
     bonusButton.addEventListener("click", () => {
-      alert("You found the secret button!");
+      alert("https://www.youtube.com/watch?v=Na7d2tVxJrs&ab_channel=rachie%F0%9F%8E%80%F0%9F%92%8C");
     });
 
     // Function to move a button to a random position
@@ -125,6 +271,10 @@
       button.style.left = `${randomX}px`;
       button.style.top = `${randomY}px`;
     }
+    
   </script>
+
+</body>
+</html>
 </body>
 </html>
