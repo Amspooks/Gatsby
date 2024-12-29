@@ -20,23 +20,111 @@
     h3, h4 {
       margin: 5px;
     }
+
+    .button {
+      display: none; /* Initially hidden */
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #04AA6D;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      position: absolute;
+    }
+
+    .button:hover {
+      background-color: #028a5d;
+    }
   </style>
 </head>
 <body>
   <div>
     <h4>You have wasted:</h4>
     <h3 id="timerytimer">0</h3>
-    <h4>seconds on this site</h4>
+    <h4 id="timeLabel">second on this site</h4>
+    <button id="specialButton" class="button">
+      Click Me!
+    </button>
+    <button id="bonusButton" class="button">
+      You Found Me!
+    </button>
   </div>
 
   <script>
     let number = 0;
     const numberElement = document.getElementById("timerytimer");
+    const timeLabel = document.getElementById("timeLabel");
+    const specialButton = document.getElementById("specialButton");
+    const bonusButton = document.getElementById("bonusButton");
+    let clickCount = 0;
 
+    const messages = [
+      "Don't click me",
+      "Stop it",
+      "Please",
+      "It hurts",
+      "No more",
+      "Ow",
+      "You are one without love and mercy",
+      "I hope you suffer with me in hell",
+      "Make it stop",
+      "One more time."
+    ];
+
+    // Timer logic
     setInterval(() => {
       number++;
       numberElement.textContent = number;
+
+      // Update the label to "second" or "seconds"
+      if (number === 1) {
+        timeLabel.textContent = "second on this site";
+      } else {
+        timeLabel.textContent = "seconds on this site";
+      }
+
+      // Show the first button after 100 seconds
+      if (number === 10) {
+        specialButton.style.display = "block";
+        moveButtonRandomly(specialButton); // Position it randomly initially
+      }
     }, 1000); 
+
+    // Special button click logic
+    specialButton.addEventListener("click", () => {
+      clickCount++;
+
+      // Change the button text to a random message
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      specialButton.textContent = randomMessage;
+
+      // Move the button to a new random position
+      moveButtonRandomly(specialButton);
+
+      // Show the bonus button after 10 clicks
+      if (clickCount === 10) {
+        bonusButton.style.display = "block";
+      }
+    });
+
+    // Bonus button click logic
+    bonusButton.addEventListener("click", () => {
+      alert("You found the secret button!");
+    });
+
+    // Function to move a button to a random position
+    function moveButtonRandomly(button) {
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      const randomX = Math.random() * (viewportWidth - button.offsetWidth);
+      const randomY = Math.random() * (viewportHeight - button.offsetHeight);
+
+      button.style.left = `${randomX}px`;
+      button.style.top = `${randomY}px`;
+    }
   </script>
 </body>
 </html>
