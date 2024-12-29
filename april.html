@@ -220,61 +220,7 @@
       } else {
         timeLabel.textContent = "seconds on this site";
       }
-
-      // Show the first button after 100 seconds
-      if (number === 10) {
-        specialButton.style.display = "block";
-        moveButtonRandomly(specialButton); // Position it randomly initially
-      }
     }, 1000); 
-
-    // Special button click logic
-    specialButton.addEventListener("click", () => {
-      clickCount++;
-
-      // Change the button text to a random message
-      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-      specialButton.textContent = randomMessage;
-
-      // Move the button to a new random position
-      moveButtonRandomly(specialButton);
-
-      // Show the bonus button after 10 clicks
-      if (clickCount === 10) {
-        bonusButton.style.display = "block";
-      }
-    });
-
-      // Make the number clickable at 15 seconds
-      if (number === 15) {
-        numberElement.classList.add("link");
-        numberElement.title = "?";
-        numberElement.addEventListener("click", () => {
-          window.location.href = "https://www.youtube.com/watch?v=bKICsi3eBzM&ab_channel=Amspooks"; // Replace with your desired website
-        });
-      }
-    }, 1000); 
-
-    // Bonus button click logic
-    bonusButton.addEventListener("click", () => {
-      alert("https://www.youtube.com/watch?v=Na7d2tVxJrs&ab_channel=rachie%F0%9F%8E%80%F0%9F%92%8C");
-    });
-
-    // Function to move a button to a random position
-    function moveButtonRandomly(button) {
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-
-      const randomX = Math.random() * (viewportWidth - button.offsetWidth);
-      const randomY = Math.random() * (viewportHeight - button.offsetHeight);
-
-      button.style.left = `${randomX}px`;
-      button.style.top = `${randomY}px`;
-    }
-    
   </script>
-
-</body>
-</html>
 </body>
 </html>
