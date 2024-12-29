@@ -1,1 +1,34 @@
 
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div style="padding-left:16px">
+</div>
+
+</body>
+
+	
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background-color: #ffbeb0;">
+  <h4>You have wasted:</h4>
+  <h3 id="timerytimer">0</h3>
+  <h4>seconds on this site</h4>
+  <Br>
+  <script id = timer>
+    let number = 0;
+    const numberElement = document.getElementById("timerytimer");
+
+    setInterval(() => {
+      number++;
+      numberElement.textContent = number;
+    }, 1000); 
+</html>
+    
