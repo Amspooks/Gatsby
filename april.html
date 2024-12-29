@@ -1,29 +1,35 @@
-
-
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="styles.css" />
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-
-<div style="padding-left:16px">
-</div>
-
-</body>
-
-	
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <style>
+    body {
+      background-color: #ffbeb0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h3, h4 {
+      margin: 5px;
+    }
+  </style>
 </head>
-<body style="background-color: #ffbeb0;">
-  <h4>You have wasted:</h4>
-  <h3 id="timerytimer">0</h3>
-  <h4>seconds on this site</h4>
-  <Br>
-  <script id = timer>
+<body>
+  <div>
+    <h4>You have wasted:</h4>
+    <h3 id="timerytimer">0</h3>
+    <h4>seconds on this site</h4>
+  </div>
+
+  <script>
     let number = 0;
     const numberElement = document.getElementById("timerytimer");
 
@@ -32,6 +38,5 @@
       numberElement.textContent = number;
     }, 1000); 
   </script>
-	  </body>
+</body>
 </html>
-    
